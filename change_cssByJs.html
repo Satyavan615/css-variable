@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js using css</title>
+    <style>
+        :root{
+        --color: blue;
+        --blur:10px;
+        --space:10px;
+        }
+        body{
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+        }
+        .container{
+ text-transform: capitalize;
+  
+        }
+        img{
+            padding:  var(--space);
+            border: 5px solid  black;
+            background: var(--color);
+            filter: blur(var(--blur));
+            /* height: 100vh; */
+            width: 100vw;
+
+        }
+        span{
+            text-transform: capitalize;
+            color: var(--color);
+            font-weight: bolder;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>css variable with <span> javascript</span></h1>
+    <div class="container">
+        <label for="space">spacing
+            <input type="range" name="space" min="10" max="200" value="10" data-sizing="px">
+        <label for="blur">blur
+            <input type="range" name="blur" min="0" max="25" value="2" data-sizing="px">
+        </label>
+        <label for="color">color
+            <input type="color" name="color"  value="#EFEFEF" >
+        </label>
+
+    </div>
+    <img src="sattu.jpg" alt="back-ground">
+</body>
+<script>
+    const inputs =document.querySelectorAll(".container input");
+    function handleUpdate(){
+     const suffix =this.dataset.sizing || ' ';
+     document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix)
+
+    }
+    inputs.forEach(input=>input.addEventListener('change' ,handleUpdate));
+    inputs.forEach(input=>input.addEventListener('mousemove' ,handleUpdate));
+</script>
+
+</html>
